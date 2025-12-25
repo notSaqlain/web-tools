@@ -53,6 +53,17 @@
                 <h1 class="text-lg font-bold text-gray-900 tracking-tight">Slide Deck Builder</h1>
                 <p class="text-xs text-gray-500 font-medium">Web Tools Suite</p>
             </div>
+            <!-- Tabs -->
+            <div class="flex bg-gray-100 p-1 rounded-lg ml-6">
+                <button id="tabPresentation" onclick="switchTab('presentation')"
+                    class="px-4 py-1.5 text-sm font-medium rounded-md bg-white text-gray-900 shadow-sm transition-all">
+                    Slide Builder
+                </button>
+                <button id="tabArchiver" onclick="switchTab('archiver')"
+                    class="px-4 py-1.5 text-sm font-medium rounded-md text-gray-500 hover:text-gray-900 transition-all">
+                    Batch Archiver
+                </button>
+            </div>
         </div>
 
         <!-- Action Buttons -->
@@ -87,38 +98,94 @@
     <main class="flex-1 overflow-y-auto relative scroll-smooth">
         <div class="max-w-7xl mx-auto p-8">
 
-            <!-- Upload Area -->
-            <!-- Note: The 'py-24' vs 'py-10' padding is toggled via JS based on state -->
-            <!-- Upload Area -->
-            <!-- Note: The 'py-24' vs 'py-10' padding is toggled via JS based on state -->
-            <input type="file" id="fileInput" multiple accept="image/*" class="hidden-input">
-            <div id="dropZone"
-                class="drop-zone border-2 border-0 bg-white rounded-2xl p-8 text-center cursor-pointer mb-10 shadow-sm hover:shadow-md py-24 group relative overflow-hidden">
+            <!-- TAB 1: Presentation Builder -->
+            <div id="sectionPresentation">
+                <!-- Upload Area -->
+                <input type="file" id="fileInput" multiple accept="image/*" class="hidden-input">
+                <div id="dropZone"
+                    class="drop-zone border-2 border-0 bg-white rounded-2xl p-8 text-center cursor-pointer mb-10 shadow-sm hover:shadow-md py-24 group relative overflow-hidden">
 
-                <div class="relative z-10 pointer-events-none transition-transform duration-300 group-hover:scale-105">
                     <div
-                        class="w-16 h-16 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-indigo-100 shadow-sm">
-                        <i class="fas fa-images text-2xl"></i>
+                        class="relative z-10 pointer-events-none transition-transform duration-300 group-hover:scale-105">
+                        <div
+                            class="w-16 h-16 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-indigo-100 shadow-sm">
+                            <i class="fas fa-images text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Drop your slides here</h3>
+                        <p class="text-gray-500 text-sm max-w-sm mx-auto">
+                            Support for JPG, PNG. Order them automatically or rearrange manually below.
+                        </p>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-2">Drop your slides here</h3>
-                    <p class="text-gray-500 text-sm max-w-sm mx-auto">
-                        Support for JPG, PNG. Order them automatically or rearrange manually below.
-                    </p>
+                </div>
+
+                <!-- Slides Grid -->
+                <!-- We want a responsive grid that adapts to any screen size but looks best on desktop -->
+                <div id="gallery" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 pb-24">
+                    <!-- Javascript will populate slide cards here -->
+                </div>
+
+                <!-- Empty State Helper -->
+                <div id="emptyState" class="text-center mt-12 pb-20">
+                    <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 mb-4">
+                        <i class="fas fa-arrow-up text-gray-400"></i>
+                    </div>
+                    <p class="text-gray-400 font-medium">Your presentation is currently empty.</p>
                 </div>
             </div>
 
-            <!-- Slides Grid -->
-            <!-- We want a responsive grid that adapts to any screen size but looks best on desktop -->
-            <div id="gallery" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 pb-24">
-                <!-- Javascript will populate slide cards here -->
-            </div>
-
-            <!-- Empty State Helper -->
-            <div id="emptyState" class="text-center mt-12 pb-20">
-                <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 mb-4">
-                    <i class="fas fa-arrow-up text-gray-400"></i>
+            <!-- TAB 2: Batch Archiver -->
+            <div id="sectionArchiver" class="hidden">
+                <!-- Archiver Header -->
+                <div class="mb-8 flex justify-between items-end">
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-900">Secure Batch Archiver</h2>
+                        <p class="text-gray-500 mt-1">Client-side compression. No files are uploaded to any server.</p>
+                    </div>
+                    <div class="flex gap-3">
+                        <button onclick="clearZipFiles()"
+                            class="px-4 py-2 text-sm font-medium text-red-600 hover:bg-red-50 rounded-lg transition-colors focus:ring-2 focus:ring-red-100 outline-none">
+                            Clear Files
+                        </button>
+                        <button onclick="generateZip()" id="zipDownloadBtn" disabled
+                            class="px-5 py-2.5 text-sm font-semibold text-white bg-emerald-600 rounded-lg hover:bg-emerald-700 shadow-md transition-all disabled:opacity-50 disabled:shadow-none flex items-center gap-2">
+                            <i class="fas fa-file-zipper"></i>
+                            <span>Download ZIP</span>
+                        </button>
+                    </div>
                 </div>
-                <p class="text-gray-400 font-medium">Your presentation is currently empty.</p>
+
+                <!-- Archiver Upload Area -->
+                <input type="file" id="zipInput" multiple class="hidden-input">
+                <div id="zipDropZone"
+                    class="drop-zone border-2 border-0 bg-white rounded-2xl p-12 text-center cursor-pointer mb-8 shadow-sm hover:shadow-md group relative overflow-hidden transition-all">
+
+                    <div
+                        class="relative z-10 pointer-events-none transition-transform duration-300 group-hover:scale-105">
+                        <div
+                            class="w-16 h-16 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-emerald-100 shadow-sm">
+                            <i class="fas fa-box-archive text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Drop files to archive</h3>
+                        <p class="text-gray-500 text-sm max-w-sm mx-auto">
+                            Any file type. Compressed instantly in your browser.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- File List -->
+                <div class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+                    <div class="px-6 py-4 border-b border-gray-100 bg-gray-50/50 flex justify-between items-center">
+                        <h3 class="font-semibold text-gray-700 text-sm">Files to Archive</h3>
+                        <span id="zipFileCount"
+                            class="bg-indigo-100 text-indigo-700 text-xs px-2 py-0.5 rounded-full font-medium">0
+                            file(s)</span>
+                    </div>
+                    <ul id="zipList" class="divide-y divide-gray-100 max-h-[400px] overflow-y-auto">
+                        <li id="zipEmptyState" class="py-12 text-center text-gray-400 text-sm">
+                            No files added yet
+                        </li>
+                    </ul>
+                </div>
             </div>
 
         </div>

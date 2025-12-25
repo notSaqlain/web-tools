@@ -14,6 +14,7 @@ let elements = {};
 // Initialization
 // -----------------------------------------------------------------------------
 document.addEventListener('DOMContentLoaded', () => {
+    console.log("Web Tools: DOM Content Loaded"); // Debug
     // Initialize References
     elements = {
         // Shared
@@ -43,9 +44,15 @@ document.addEventListener('DOMContentLoaded', () => {
         zipFileCount: document.getElementById('zipFileCount'),
     };
 
+    console.log("Elements initialized:", elements); // Debug
+
+    if (!elements.dropZone) console.error("CRITICAL: dropZone not found!");
+    if (!elements.fileInput) console.error("CRITICAL: fileInput not found!");
+
     refreshUI();
     refreshZipUI();
     setupEventListeners();
+    console.log("Event listeners setup complete"); // Debug
 });
 
 // Event Listeners Setup
@@ -131,7 +138,13 @@ window.switchTab = switchTab;
 // -----------------------------------------------------------------------------
 
 function handleNewFiles(fileList) {
-    const newImages = Array.from(fileList).filter(file => file.type.startsWith('image/'));
+    console.log("handleNewFiles called with:", fileList); // Debug
+    if (!fileList || fileList.length === 0) return;
+
+    const newImages = Array.from(fileList).filter(file => {
+        console.log("Checking file:", file.name, file.type); // Debug
+        return file.type.startsWith('image/');
+    });
 
     if (newImages.length === 0) {
         if (fileList.length > 0) {
