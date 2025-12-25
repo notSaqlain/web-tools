@@ -6,7 +6,7 @@ A collection of useful, client-side web utilities designed to handle quick tasks
 
 ## 🚀 Live Demo
 Check out the live tools here: **http://saqlain.altervista.org/web-tools/index.html**
-Check out the live tools here: **[https://notsaqlain.github.io/web-tools/](https://notsaqlain.github.io/web-tools/)**
+**[https://notsaqlain.github.io/web-tools/](https://notsaqlain.github.io/web-tools/)**
 
 ---
 
