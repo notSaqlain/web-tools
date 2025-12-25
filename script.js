@@ -7,39 +7,42 @@
 let slides = []; // For the Slide Builder
 let zipFiles = []; // For the Batch Archiver
 
-// DOM Element References
+// DOM Element References (Initialized on Load)
 // -----------------------------------------------------------------------------
-const elements = {
-    // Shared
-    loader: document.getElementById('loader'),
-    toast: document.getElementById('toast'),
-    toastMsg: document.getElementById('toastMsg'),
-
-    // Tab Navigation
-    tabPresentation: document.getElementById('tabPresentation'),
-    tabArchiver: document.getElementById('tabArchiver'),
-    sectionPresentation: document.getElementById('sectionPresentation'),
-    sectionArchiver: document.getElementById('sectionArchiver'),
-
-    // Presentation Builder
-    dropZone: document.getElementById('dropZone'),
-    fileInput: document.getElementById('fileInput'),
-    gallery: document.getElementById('gallery'),
-    emptyState: document.getElementById('emptyState'),
-    downloadBtn: document.getElementById('downloadBtn'),
-
-    // Batch Archiver
-    zipDropZone: document.getElementById('zipDropZone'),
-    zipInput: document.getElementById('zipInput'),
-    zipList: document.getElementById('zipList'),
-    zipEmptyState: document.getElementById('zipEmptyState'),
-    zipDownloadBtn: document.getElementById('zipDownloadBtn'),
-    zipFileCount: document.getElementById('zipFileCount'),
-};
+let elements = {};
 
 // Initialization
 // -----------------------------------------------------------------------------
 document.addEventListener('DOMContentLoaded', () => {
+    // Initialize References
+    elements = {
+        // Shared
+        loader: document.getElementById('loader'),
+        toast: document.getElementById('toast'),
+        toastMsg: document.getElementById('toastMsg'),
+
+        // Tab Navigation
+        tabPresentation: document.getElementById('tabPresentation'),
+        tabArchiver: document.getElementById('tabArchiver'),
+        sectionPresentation: document.getElementById('sectionPresentation'),
+        sectionArchiver: document.getElementById('sectionArchiver'),
+
+        // Presentation Builder
+        dropZone: document.getElementById('dropZone'),
+        fileInput: document.getElementById('fileInput'),
+        gallery: document.getElementById('gallery'),
+        emptyState: document.getElementById('emptyState'),
+        downloadBtn: document.getElementById('downloadBtn'),
+
+        // Batch Archiver
+        zipDropZone: document.getElementById('zipDropZone'),
+        zipInput: document.getElementById('zipInput'),
+        zipList: document.getElementById('zipList'),
+        zipEmptyState: document.getElementById('zipEmptyState'),
+        zipDownloadBtn: document.getElementById('zipDownloadBtn'),
+        zipFileCount: document.getElementById('zipFileCount'),
+    };
+
     refreshUI();
     refreshZipUI();
     setupEventListeners();
