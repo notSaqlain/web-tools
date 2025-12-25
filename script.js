@@ -204,12 +204,19 @@ function removeSlide(id) {
 window.removeSlide = removeSlide;
 
 function clearAllSlides() {
-    if (slides.length === 0) return;
-    if (confirm("Are you sure you want to remove all slides?")) {
+    if (slides.length === 0 && zipFiles.length === 0) return;
+
+    if (confirm("Are you sure you want to remove ALL items from both the Slide Builder and the Archiver?")) {
+        // Clear Slide Deck
         slides = [];
         renderGallery();
         refreshUI();
-        showNotification("All slides removed");
+
+        // Clear Archiver
+        zipFiles = [];
+        refreshZipUI();
+
+        showNotification("All data cleared successfully");
     }
 }
 window.clearAllSlides = clearAllSlides;
@@ -301,16 +308,6 @@ function removeZipFile(index) {
     refreshZipUI();
 }
 window.removeZipFile = removeZipFile;
-
-function clearZipFiles() {
-    if (zipFiles.length === 0) return;
-    if (confirm("Clear all files from the archiver?")) {
-        zipFiles = [];
-        refreshZipUI();
-        showNotification("Archiver cleared");
-    }
-}
-window.clearZipFiles = clearZipFiles;
 
 function refreshZipUI() {
     const hasFiles = zipFiles.length > 0;
