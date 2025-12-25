@@ -22,14 +22,14 @@ A simple tool to convert a batch of screenshots or images into a formatted Power
 * **Instant Export:** Generates a standard Widescreen (16:9) PowerPoint file.
 * **Tech Stack:** HTML5, Tailwind CSS, [PptxGenJS](https://gitbrent.github.io/PptxGenJS/).
 
----
+### 2. 🗄️ Secure Batch Archiver (Local Zip Tool)
+Select multiple files of any type and compress them into a single zip archive instantly.
 
-## 🔮 Roadmap (Coming Soon)
-I am actively adding more utilities to this repository. Planned tools include:
-
-* **📦 Image to ZIP:** Select multiple images and download them as a single `.zip` archive.
-* **🖼️ Image Resizer:** Quickly resize batch images for web use.
-* *(Feel free to suggest more in the Issues tab!)*
+**Features:**
+* **Privacy First:** Logic runs 100% in your browser. No files are sent to any server.
+* **Instant Compression:** Uses JSZip for fast, client-side zipping.
+* **Smart De-duplication:** Automatically prevents adding duplicate files.
+* **Tech Stack:** JSZip, FileSaver.js.
 
 ---
 
