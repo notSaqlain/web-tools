@@ -5,8 +5,8 @@ A collection of useful, client-side web utilities designed to handle quick tasks
 **Privacy First:** All processing happens locally in your browser. No files are ever uploaded to a server.
 
 ## 🚀 Live Demo
-Check out the live tools here: **http://saqlain.altervista.org/web-tools/index.html**
-**[https://notsaqlain.github.io/web-tools/](https://notsaqlain.github.io/web-tools/)**
+Check out the live tools here: **http://saqlain.altervista.org/web-tools/index.html** <br>
+Check out the live tools here: **[https://notsaqlain.github.io/web-tools/](https://notsaqlain.github.io/web-tools/)**
 
 ---
 
