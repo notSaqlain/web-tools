@@ -134,7 +134,9 @@ function handleNewFiles(fileList) {
     const newImages = Array.from(fileList).filter(file => file.type.startsWith('image/'));
 
     if (newImages.length === 0) {
-        showNotification("Please upload image files only (JPG, PNG)");
+        if (fileList.length > 0) {
+            alert("The Slide Deck Builder only accepts images (JPG, PNG). To archive other files, switch to the Batch Archiver tab.");
+        }
         return;
     }
 

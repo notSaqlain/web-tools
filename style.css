@@ -70,7 +70,8 @@ body {
 .card-img {
   height: 180px;
   object-fit: contain;
-  background-color: #f1f5f9; /* Slate 100 */
+  background-color: #f1f5f9;
+  /* Slate 100 */
 }
 
 /* Glassmorphism Toast */
@@ -87,4 +88,17 @@ body {
 
 .btn-primary:active {
   transform: scale(0.98);
+}
+
+/* Robust hidden input that remains accessible/clickable programmatically */
+.hidden-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+  visibility: hidden;
 }
