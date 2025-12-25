@@ -453,3 +453,48 @@ function showNotification(message) {
         elements.toast.classList.add('translate-y-32');
     }, 3000);
 }
+
+// -----------------------------------------------------------------------------
+// FEATURE 3: Welcome Modal Logic
+// -----------------------------------------------------------------------------
+
+function showWelcomeModal() {
+    const modal = document.getElementById('welcomeModal');
+    const content = document.getElementById('welcomeModalContent');
+    if (!modal || !content) return;
+
+    // Show wrapper
+    modal.classList.remove('hidden');
+
+    // Animate in (small delay to allow display:block to apply)
+    setTimeout(() => {
+        modal.classList.remove('opacity-0');
+        content.classList.remove('scale-95', 'opacity-0', 'translate-y-4');
+        content.classList.add('scale-100', 'opacity-100', 'translate-y-0');
+    }, 10);
+}
+
+function closeWelcomeModal() {
+    const modal = document.getElementById('welcomeModal');
+    const content = document.getElementById('welcomeModalContent');
+
+    // Animate out
+    modal.classList.add('opacity-0');
+    content.classList.remove('scale-100', 'opacity-100', 'translate-y-0');
+    content.classList.add('scale-95', 'opacity-0', 'translate-y-4');
+
+    // Hide after animation
+    setTimeout(() => {
+        modal.classList.add('hidden');
+    }, 300);
+}
+window.closeWelcomeModal = closeWelcomeModal;
+
+// Show on load
+window.addEventListener('load', () => {
+    // Optional: Check localStorage if we want to show it only once
+    // if (!localStorage.getItem('welcomeShown')) {
+    setTimeout(showWelcomeModal, 500); // 500ms delay for smoothness
+    //    localStorage.setItem('welcomeShown', 'true');
+    // }
+});
