@@ -150,6 +150,22 @@ function handleNewFiles(fileList) {
     showNotification(`Added ${newImages.length} slide(s)`);
 }
 
+function sendSlidesToArchiver() {
+    if (slides.length === 0) return;
+
+    // Add all current slides to zipFiles
+    const files = slides.map(s => s.file);
+
+    // Use the existing handler to process them (handles de-duplication)
+    handleZipFiles(files);
+
+    // Switch tabs to show the user
+    switchTab('archiver');
+
+    showNotification(`Sent ${files.length} slides to Archiver`);
+}
+window.sendSlidesToArchiver = sendSlidesToArchiver;
+
 function generateId() {
     return Math.random().toString(36).substring(2, 9);
 }
@@ -226,6 +242,10 @@ function renderGallery() {
 function refreshUI() {
     const hasSlides = slides.length > 0;
     elements.downloadBtn.disabled = !hasSlides;
+
+    const sendBtn = document.getElementById('sendToZipBtn');
+    if (sendBtn) sendBtn.disabled = !hasSlides;
+
 
     if (hasSlides) {
         elements.emptyState.classList.add('hidden');
